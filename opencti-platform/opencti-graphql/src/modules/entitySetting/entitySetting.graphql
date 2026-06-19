@@ -16,6 +16,11 @@ type TypeAttribute {
   scale: String
 }
 
+type AttributeLabel {
+  name: String!
+  label: String
+}
+
 
 type ScaleAttribute {
   name: String!
@@ -48,6 +53,7 @@ type EntitySetting implements InternalObject & BasicObject {
   enforce_reference: Boolean @auth
   attributes_configuration: String @auth(for: [SETTINGS_SETCUSTOMIZATION])
   attributesDefinitions: [TypeAttribute!]! @auth(for: [SETTINGS_SETCUSTOMIZATION])
+  attributeLabels: [AttributeLabel!]! @auth
   mandatoryAttributes: [String!]! @auth
   scaleAttributes: [ScaleAttribute!]! @auth
   defaultValuesAttributes: [DefaultValueAttribute!]! @auth
