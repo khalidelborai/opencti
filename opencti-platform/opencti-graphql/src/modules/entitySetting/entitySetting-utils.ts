@@ -167,7 +167,10 @@ export const getDefaultValues = (attributeConfiguration: AttributeConfiguration,
 };
 
 const fillDefaultNullValues = (input: Record<string, any>, entitySetting: BasicStoreEntityEntitySetting) => {
-  const entityType = entitySetting?.target_type;
+  if (!entitySetting) {
+    return input;
+  }
+  const entityType = entitySetting.target_type;
   const entityAttributes = [...schemaAttributesDefinition.getAttributes(entityType).values()];
   const attributesWithDefaultNullValues = entityAttributes.filter((a) => a.defaultNullValue !== undefined);
   if (attributesWithDefaultNullValues.length === 0) {
